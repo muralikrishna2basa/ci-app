@@ -13,5 +13,17 @@ before_script:
 script:
   - vendor/bin/phpunit
 
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $ACCESSKEYID
+  secret_access_key:
+    secure: "$SECRETACCESSKEY"
+  region: "us-west-2"  
+  app: "myphp"
+  env: "Myphp-env"
+  bucket_name: "$S3BUCKET"
+  on:
+    branch: master
+
 notifications:
   email: false
